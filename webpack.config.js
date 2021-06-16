@@ -31,8 +31,7 @@ const config = {
       '.jsx'
     ],
     alias: {
-      'react-dom':  '@hot-loader/react-dom',
-      '@assets/': path.resolve(__dirname, "src/assets/")
+      'react-dom':  '@hot-loader/react-dom'
     }
   },
   plugins: [
