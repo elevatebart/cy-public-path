@@ -1,4 +1,3 @@
-const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -9,7 +8,9 @@ const config = {
   ],
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
+    filename: '[name].js',
+    chunkFilename: '[name].bundle.js',
+    publicPath: '/',
   },
   module: {
     rules: [
@@ -20,15 +21,8 @@ const config = {
       },
       {
         test: /\.png$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              mimetype: 'image/png'
-            }
-          }
-        ]
-      }
+        type: "resource"
+      },
     ]
   },
   resolve: {
@@ -37,16 +31,13 @@ const config = {
       '.jsx'
     ],
     alias: {
-      'react-dom': '@hot-loader/react-dom'
+      'react-dom':  '@hot-loader/react-dom',
+      '@assets/': path.resolve(__dirname, "src/assets/")
     }
-  },
-  devServer: {
-    contentBase: './dist'
   },
   plugins: [
     new HtmlWebpackPlugin({
-      appMountId: 'app',
-      filename: 'index.html'
+      template: path.resolve(__dirname, './src/index.html'),
     })
   ]
 };

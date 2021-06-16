@@ -10,6 +10,7 @@ class App extends React.Component {
         <h1>
           Hello {name}
         </h1>
+        <img src="/assets/happy.png" />
       </>
     );
   }
